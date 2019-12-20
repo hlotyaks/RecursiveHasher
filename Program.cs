@@ -14,7 +14,8 @@ namespace RecursiveHasher
             Program p = new Program();
 
             var folder = new DirectoryInfo(@"C:\tmp\experiment2\packageA");
-            var task = Task.Run(async () => await p.HashFolder(folder));
+            var root = @"C:\tmp\experiment2\";
+            var task = Task.Run(async () => await p.HashFolder(folder, root));
             var result = task.Result;
 
             Console.WriteLine($"Hash of {folder.Name} in {folder.FullName}");
@@ -22,10 +23,11 @@ namespace RecursiveHasher
 
         }
 
-        async Task<string> HashFolder(DirectoryInfo folder, string searchPattern = "*", SearchOption searchOption = SearchOption.AllDirectories)
+        async Task<string> HashFolder(DirectoryInfo folder, string root, string searchPattern = "*", SearchOption searchOption = SearchOption.AllDirectories)
         {
             using(var alg = MD5.Create())
             {
+
                 var result = await alg.ComputeHashAsync(folder.EnumerateFiles(searchPattern, searchOption));
 
                 // Build the final string by converting each byte

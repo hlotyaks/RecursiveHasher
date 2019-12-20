@@ -14,6 +14,7 @@ public static class HashAlgorithmExtensions
             {
                 if (includePaths)
                 {
+                    // Add extension to FileInfo that takes root so that the filename back does not contain root.
                     var pathBytes = Encoding.UTF8.GetBytes(file.FullName);
                     cs.Write(pathBytes, 0, pathBytes.Length);
                 }
