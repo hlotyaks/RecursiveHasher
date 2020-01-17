@@ -7,6 +7,17 @@
             "type": "process",
             "args": [
                 "build",
+                "${workspaceFolder}/Hasher/src/Hasher.csproj",
+                "/property:GenerateFullPaths=true"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
                 "${workspaceFolder}/RecursiveHasher.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
